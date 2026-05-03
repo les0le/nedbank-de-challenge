@@ -187,6 +187,7 @@ def run_transformation():
     df_transactions.write.format("delta").mode("overwrite").save(f"{silver_folder}/transactions/")
     df_customers.write.format("delta").mode("overwrite").save(f"{silver_folder}/customers/")
 
-print(f"Transformation Start: {datetime.now()}")
-run_transformation()
-print(f"Transformation Ended: {datetime.now()}")
+if __name__ == "__main__":
+    print(f"Transformation Start: {datetime.now()}")
+    run_transformation()
+    print(f"Transformation Ended: {datetime.now()}")

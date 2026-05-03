@@ -74,7 +74,7 @@ def run_ingestion():
     #   2. Initialise a SparkSession with Delta Lake support (local[2]).
     #delta_lake_support = configs["spark"]["master"]
     #appName = configs["spark"]["app_name"]
-    spark = initialise_spark("Nedbank-DE-Challenge", "local[2])")
+    spark = initialise_spark("Nedbank-DE-Challenge", "local[2]")
     
     ingestion_time = datetime.now()
     #   3. Read accounts.csv → append ingestion_timestamp → write to bronze/accounts/.
@@ -91,7 +91,8 @@ def run_ingestion():
     
     spark.stop()
 
-print(f"Ingestion Start: {datetime.now()}")
-run_ingestion()
-print(f"Ingestion Ended: {datetime.now()}")
+if __name__ == "__main__":
+  print(f"Ingestion Start: {datetime.now()}")
+  run_ingestion()
+  print(f"Ingestion Ended: {datetime.now()}")
 

@@ -155,7 +155,8 @@ def run_provisioning():
     fact_transactions.write.format("delta").mode("overwrite").save(f"{gold_folder}/fact_transactions/")
     dim_customers.write.format("delta").mode("overwrite").save(f"{gold_folder}/dim_customers/")
 
-print(f"Provisioning Start: {datetime.now()}")
-run_provisioning()
-print(f"Provisioning Ended: {datetime.now()}")
+if __name__ == "__main__":
+    print(f"Provisioning Start: {datetime.now()}")
+    run_provisioning()
+    print(f"Provisioning Ended: {datetime.now()}")
 

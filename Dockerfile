@@ -22,6 +22,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Create jars directory
 RUN mkdir -p /opt/spark/jars
 
+RUN mkdir -p /data
+
 # Download ALL required jars at build time
 RUN curl -L -o /opt/spark/jars/delta-spark_2.12-3.1.0.jar \
         https://repo1.maven.org/maven2/io/delta/delta-spark_2.12/3.1.0/delta-spark_2.12-3.1.0.jar && \

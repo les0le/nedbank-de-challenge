@@ -48,7 +48,7 @@ Open and implement the three pipeline modules:
 ### 4. Build your image
 
 ```bash
-docker build -t my-submission:test .
+docker build -t lesolesebego-submission:latest .
 ```
 
 ### 5. Run locally with scoring-equivalent constraints
@@ -56,12 +56,13 @@ docker build -t my-submission:test .
 ```bash
 docker run --rm \
   --network=none \
+  --hostname="localhost" \
   --memory=2g --memory-swap=2g \
   --cpus=2 \
   --read-only \
-  --tmpfs /tmp:rw,size=512m \
-  -v /tmp/test-data:/data \
-  my-submission:test
+  --tmpfs /tmp:rw,exec,size=512m \
+  -v $(pwd)/data:/data \
+  lesolesebego-submission:latest 
 
 echo "Exit code: $?"
 ```
@@ -81,7 +82,7 @@ ls /tmp/test-data/output/gold/
 From the challenge pack root (the directory containing `run_tests.sh`):
 
 ```bash
-bash run_tests.sh --stage 1 --data-dir /tmp/test-data --image my-submission:test
+bash run_tests.sh --stage 1 --data-dir /tmp/test-data --image lesolesebego-submission:test
 ```
 
 All 7 checks must pass before you submit.
