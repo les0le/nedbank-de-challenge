@@ -5,6 +5,8 @@ ENV PATH="$SPARK_HOME/bin:$PATH"
 ENV PYSPARK_PYTHON=python3
 ENV SPARK_LOCAL_IP=127.0.0.1
 ENV HOSTNAME=localhost
+ENV SPARK_LOCAL_HOSTNAME=localhost
+ENV HOSTNAME=localhost
 ENV PYSPARK_SUBMIT_ARGS="\
 --conf spark.jars.ivy= \
 --conf spark.sql.extensions=io.delta.sql.DeltaSparkSessionExtension \
@@ -42,6 +44,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 # via Docker volume mounts by the scoring system.
 COPY pipeline/ /app/pipeline/
 COPY config/ /app/config/
+COPY config/ /data/config/
 
 # Entry point — must run the complete pipeline end-to-end without interactive input.
 # The scoring system uses this CMD directly; do not require TTY or stdin.
